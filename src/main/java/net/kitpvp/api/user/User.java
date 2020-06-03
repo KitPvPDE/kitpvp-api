@@ -1,5 +1,6 @@
 package net.kitpvp.api.user;
 
+import net.kitpvp.api.Group;
 import net.kitpvp.pluginapi.modules.stats.Stats;
 
 import java.util.UUID;

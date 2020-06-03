@@ -1,4 +1,4 @@
-package net.kitpvp.api.user;
+package net.kitpvp.api;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
