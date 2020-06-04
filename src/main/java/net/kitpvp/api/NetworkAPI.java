@@ -12,4 +12,6 @@ public interface NetworkAPI {
     default User getUser(UUID playerId) {
         return getUserFactory().getUser(playerId);
     }
+
+    BungeeConnection getBungeeConnection();
 }
