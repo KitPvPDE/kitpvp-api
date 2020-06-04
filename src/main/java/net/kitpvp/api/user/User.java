@@ -15,4 +15,5 @@ public interface User {
 
     Group getGroup();
 
+    boolean isLoaded();
 }
