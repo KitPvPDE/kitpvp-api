@@ -1,5 +1,7 @@
 package net.kitpvp.api;
 
+import net.kitpvp.api.bungee.IBungeeConnection;
+import net.kitpvp.api.group.IGroupManager;
 import net.kitpvp.api.user.User;
 import net.kitpvp.api.user.UserFactory;
 
@@ -13,5 +15,7 @@ public interface NetworkAPI {
         return getUserFactory().getUser(playerId);
     }
 
-    BungeeConnection getBungeeConnection();
+    IBungeeConnection getBungeeConnection();
+
+    IGroupManager getGroupManager();
 }
