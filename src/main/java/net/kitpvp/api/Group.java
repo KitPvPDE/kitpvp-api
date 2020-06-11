@@ -84,6 +84,37 @@ public enum Group {
         }
     }
 
+    public String getTabName() {
+        switch(this) {
+            case DEFAULT:
+                return "";
+            case ADMIN:
+                return "ADMIN";
+            case HAZARD:
+                return "HAZARD";
+            case INFECTED:
+                return "INFECTED";
+            case PRO:
+            case PRO_PLUS:
+                return "PRO";
+            case ELITE:
+                return "ELITE";
+            case MEDIA:
+                return "MEDIA";
+            case LEGEND:
+                return "LEGEND";
+            case BUILDER:
+                return "BUILDER";
+            case DEVELOPER:
+                return "DEV";
+            case MODERATOR:
+            case TRIAL_MODERATOR:
+            case SENIOR_MODERATOR:
+                return "MOD";
+        }
+        return "";
+    }
+
     public String getColor() {
         switch(this) {
             case PRO:
