@@ -2,10 +2,8 @@ package net.kitpvp.api;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.kitpvp.api.impl.PluginResolver;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
@@ -161,24 +159,11 @@ public enum Group {
         return api.getGroupManager().getPlayerGroup(playerId);
     }
 
-    public static Group getGroup(Player player) {
-        return getGroup(player.getUniqueId());
-    }
-
-    public static Group getGroup(CommandSender sender) {
-        init();
-
-        if(api == null)
-            return DEFAULT;
-
-        return api.getGroupManager().getPlayerGroup(sender);
-    }
-
     private static void init() {
         if(init)
             return;
 
         init = true;
-        api = (NetworkAPI) Bukkit.getPluginManager().getPlugin("PluginAPI");
+        api = PluginResolver.getResolver().getAPI();
     }
 }
