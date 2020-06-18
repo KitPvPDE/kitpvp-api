@@ -19,12 +19,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.7.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>net.kitpvp.network</groupId>
             <artifactId>chat-api</artifactId>
             <version>1.0-SNAPSHOT</version>
