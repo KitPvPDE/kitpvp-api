@@ -3,11 +3,6 @@ package net.kitpvp.api;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public enum Group {
@@ -147,38 +142,5 @@ public enum Group {
             default:
                 throw new UnsupportedOperationException("Unknown group " + this);
         }
-    }
-
-    private static boolean init = false;
-    private static NetworkAPI api = null;
-
-    public static Group getGroup(UUID playerId) {
-        init();
-
-        if(api == null)
-            return DEFAULT;
-
-        return api.getGroupManager().getPlayerGroup(playerId);
-    }
-
-    public static Group getGroup(Player player) {
-        return getGroup(player.getUniqueId());
-    }
-
-    public static Group getGroup(CommandSender sender) {
-        init();
-
-        if(api == null)
-            return DEFAULT;
-
-        return api.getGroupManager().getPlayerGroup(sender);
-    }
-
-    private static void init() {
-        if(init)
-            return;
-
-        init = true;
-        api = (NetworkAPI) Bukkit.getPluginManager().getPlugin("PluginAPI");
     }
 }
