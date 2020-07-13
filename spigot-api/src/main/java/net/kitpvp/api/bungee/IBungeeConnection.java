@@ -9,6 +9,10 @@ import java.util.function.Consumer;
 
 public interface IBungeeConnection {
 
+    int getOnlineCount();
+
+    int getOnlineCount(String serverCategory);
+
     void getRank(UUID uuid, Consumer<Group> callback);
 
     void getRanks(List<UUID> uuids, Consumer<Map<UUID, Group>> callback);
