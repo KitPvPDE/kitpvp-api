@@ -1,6 +1,7 @@
 package net.kitpvp.api.bungee;
 
 import net.kitpvp.api.Group;
+import net.kitpvp.api.Warp;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ public interface IBungeeConnection {
     int getOnlineCount();
 
     int getOnlineCount(String serverCategory);
+
+    int getOnlineCount(Warp warp);
 
     void getRank(UUID uuid, Consumer<Group> callback);
 
