@@ -14,8 +14,6 @@ public interface IBungeeConnection {
 
     int getOnlineCount(String serverCategory);
 
-    int getOnlineCount(Warp warp);
-
     void getRank(UUID uuid, Consumer<Group> callback);
 
     void getRanks(List<UUID> uuids, Consumer<Map<UUID, Group>> callback);
