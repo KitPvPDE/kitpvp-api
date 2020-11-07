@@ -2,7 +2,7 @@ package net.kitpvp.api.user;
 
 import net.kitpvp.api.Group;
 import net.kitpvp.api.NetworkAPI;
-import net.kitpvp.pluginapi.modules.stats.Stats;
+import net.kitpvp.stats.mongodb.MongoStats;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
@@ -13,7 +13,7 @@ public interface User {
 
     String getPlayerName();
 
-    Stats getStats();
+    MongoStats getMongoStats();
 
     Group getGroup();
 
