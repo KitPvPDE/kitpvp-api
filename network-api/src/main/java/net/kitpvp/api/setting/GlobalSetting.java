@@ -1,6 +1,9 @@
-package net.kitpvp.api.setting.settings;
+package net.kitpvp.api.setting;
 
 import net.kitpvp.stats.settings.TSetting;
+import net.kitpvp.stats.settings.impl.NormalSetting;
+import net.kitpvp.stats.settings.impl.ToggleSetting;
+import net.kitpvp.stats.settings.impl.TrueFalseSetting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,48 +17,45 @@ public enum GlobalSetting implements TSetting {
     TITLE("title", "none"),
     TAG("tag", true),
     HEAD("head", ""),
+    CLAN_TAG("clanTag", true),
     TITLE_FORCED_OFF("titleForcedOff", false),
     LEGACY_BUY_BUILDER("legacyBuybuilder", false);
 
-    private final String key, def;
-    private final List<String> values;
+    private final NormalSetting handle;
 
     GlobalSetting(String key, boolean def) {
-        this.key = key;
-        this.def = "" + def;
-        this.values = Arrays.asList("true", "false");
+        this.handle = new TrueFalseSetting(key, def + "");
     }
 
     GlobalSetting(String key) {
-        this.key = key;
-        this.def = "";
-        this.values = new ArrayList<>();
+        this.handle = new NormalSetting(key, "");
     }
 
     GlobalSetting(String key, String def, String... values) {
-        this.key = key;
-        this.def = def;
-        this.values = new ArrayList<>();
-        this.values.add(def);
-        this.values.addAll(Arrays.asList(values));
+        List<String> vals = new ArrayList<>();
+        vals.add(def);
+        vals.addAll(Arrays.asList(values));
+        this.handle = new ToggleSetting(key, def, vals);
     }
 
     public String getKey() {
-        return this.key;
+        return this.handle.getKey();
     }
 
     @Override
     public String getDefault() {
-        return this.def;
+        return this.handle.getDefault();
     }
 
     public List<String> getValues() {
-        return this.values;
+        if(!(this.handle instanceof TSetting))
+            throw new IllegalArgumentException("Cannot toggle the setting " + this);
+        return ((TSetting) this.handle).getValues();
     }
 
     @Override
     public final String next(String current) {
-        if(this.values.isEmpty())
+        if(!(this.handle instanceof TSetting))
             throw new IllegalArgumentException("Cannot toggle the setting " + this);
         return TSetting.super.next(current);
     }
