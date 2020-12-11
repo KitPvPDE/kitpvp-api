@@ -19,12 +19,6 @@ public interface Stats {
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("online")).stage();
     LongSStageKey AFK_TIME =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("afk")).stage();
-    LongSStatsKey LEVEL =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("level")).build();
-    DoubleSStatsKey EXP =
-            DoubleSStatsKey.builder().keyBuilder(builder -> builder.path("exp")).build();
-    LongSStatsKey BALANCE =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("credits")).build();
     SStatsKey<String> MONGO_ID =
             SStatsKey.<String>builder().keyBuilder(builder -> builder.path("_id")).defaultValue((String) null).build();
     LongSStageKey KILLS =
@@ -32,21 +26,17 @@ public interface Stats {
     LongSStageKey DEATHS =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.deaths")).stage();
     LongSStatsKey KILLSTREAK =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.function(alltime(immutable("global.killstreak.current")))).build();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("alltime.global.killstreak.current")).build();
     LongSStageKey KILLSTREAK_RECORD =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage();
     LongSStageKey CLEAN_KILLS =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("cleanKills.global")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage();
     LongStageKey<Warp> KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("kills").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(EnumUtils::nameToLowercase)).stage();
     LongStageKey<Warp> DEATHS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("deaths").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(EnumUtils::nameToLowercase)).stage();
     LongStageKey<Warp> CLEAN_KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("cleanKills").function(EnumUtils::nameToLowercase)).stage();
-    LongStageKey<String> KILLS_WITH_KIT =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("killsWithKit").function(Function.identity())).stage();
-    ArraySStatsKey<String> TITLES =
-            ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("titles")).build();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.cleanKills").function(EnumUtils::nameToLowercase)).stage();
 
     // Heads
     LongStageKey<HeadRarity> HEADS_RECEIVED =
@@ -78,14 +68,7 @@ public interface Stats {
     IntStageKey<String> TRAINING_COMPLETED =
             IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("completed")).stage();
     LongStageKey<String> TRAINING_RECORD =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("record")).stage();
-
-    // KitPvP
-
-    IntStatsKey<String> KITPVP_PATH_EXP =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("alltime.kitpvp.paths").function(Function.identity()).suffix("exp")).build();
-    IntStatsKey<String> KITPVP_PATH_LEVEL =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("alltime.kitpvp.paths").function(Function.identity()).suffix("level")).build();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("record")).def(-1).stage();
 
     // Misc
     LongSStageKey MISC_SOUPS_EATEN =

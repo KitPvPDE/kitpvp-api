@@ -5,7 +5,9 @@ import net.kitpvp.stats.keys.StatsKey;
 import net.kitpvp.stats.keys.array.ArraySStatsKey;
 import net.kitpvp.stats.keys.numeric.DoubleSStatsKey;
 import net.kitpvp.stats.keys.numeric.LongSStatsKey;
+import net.kitpvp.stats.keys.set.SetSStatsKey;
 
+import java.util.UUID;
 import java.util.function.Function;
 
 public interface ProfileStats {
@@ -20,10 +22,14 @@ public interface ProfileStats {
     LongSStatsKey PROFILE_LAST_ONLINE = LongSStatsKey.builder().keyBuilder(builder -> builder.path("timestamp")).build();
     DoubleSStatsKey PROFILE_EXP = DoubleSStatsKey.builder().keyBuilder(builder -> builder.path("exp")).build();
 
+    ArraySStatsKey<UUID> PROFILE_BLOCKED =
+            ArraySStatsKey.<UUID>builder().keyBuilder(builder -> builder.path("blocked")).build();
     ArraySStatsKey<String> PROFILE_TITLES =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("titles")).build();
     ArraySStatsKey<String> PROFILE_PERMISSIONS =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("permissions")).build();
+    ArraySStatsKey<String> PROFILE_PAST_ADDRESS =
+            ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("addresses")).build();
     StatsKey<String, String> PROFILE_SETTINGS =
             StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("settings").function(Function.identity())).defaultValue("").build();
     StatsKey<String, String> PROFILE_SERVER_GROUP =

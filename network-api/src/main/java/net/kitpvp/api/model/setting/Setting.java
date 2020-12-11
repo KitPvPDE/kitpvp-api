@@ -25,7 +25,7 @@ public interface Setting {
 
     // Staff ---->
     TrueFalseSetting SILENT_MODE = trueFalse("silentMode", false);
-    TrueFalseSetting STAFF_CHAT = trueFalse("staffChat", true);
+    TrueFalseSetting STAFF_CHAT = trueFalse("staffChat", false);
     TrueFalseSetting STRONG_SPECTATE_MODE = trueFalse("strongSpectateMode", false);
 
 

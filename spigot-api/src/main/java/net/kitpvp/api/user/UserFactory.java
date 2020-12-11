@@ -1,6 +1,6 @@
 package net.kitpvp.api.user;
 
-import net.kitpvp.mongodbapi.MongoCollection;
+import net.kitpvp.mongodbapi.database.Collection;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 
 public class UserFactory<T extends User> {
 
-    private final MongoCollection collection;
-    private final BiFunction<MongoCollection, Player, T> createFunction;
+    private final Collection collection;
+    private final BiFunction<Collection, Player, T> createFunction;
     private final Map<UUID, T> loadedUsers = new ConcurrentHashMap<>();
 
-    public UserFactory(MongoCollection collection, BiFunction<MongoCollection, Player, T> createFunction) {
+    public UserFactory(Collection collection, BiFunction<Collection, Player, T> createFunction) {
         this.collection = collection;
         this.createFunction = createFunction;
     }
