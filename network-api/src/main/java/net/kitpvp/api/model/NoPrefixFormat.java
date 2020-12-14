@@ -9,6 +9,8 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 public enum NoPrefixFormat implements MsgFormat {
 
     MATCHMAKING(ChatFormat.MATCHMAKING),
+    NETWORK(ChatFormat.NETWORK),
+    KITPVP(ChatFormat.KITPVP),
     ;
 
     private final MsgFormat handle;

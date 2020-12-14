@@ -11,18 +11,9 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 public enum ChatFormat implements MsgFormat {
 
     MATCHMAKING("»", ChatColor.WHITE, ChatColor.WHITE, ChatColor.GRAY),
-    NETWORK("»", ChatColor.GRAY, ChatColor.WHITE, ChatColor.GRAY) {
-        @Override
-        public String formatPrefix() {
-            return super.formatPrefix() + " " + ChatColor.RED + ChatColor.BOLD + "KitPvP";
-        }
+    NETWORK("»»", ChatColor.DARK_AQUA, ChatColor.WHITE, ChatColor.GRAY),
+    KITPVP(">»", ChatColor.GREEN, ChatColor.WHITE, ChatColor.GRAY),
 
-        @Override
-        public ComponentBuilder prefixBuilder() {
-            return super.prefixBuilder().append("KitPvP").color(ChatColor.RED).bold(true).append(" ", ComponentBuilder.FormatRetention.NONE).
-                    color(this.getNormalColor());
-        }
-    }
     ;
 
     private final String prefix;

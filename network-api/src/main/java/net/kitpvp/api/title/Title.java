@@ -2,6 +2,7 @@ package net.kitpvp.api.title;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.md_5.bungee.api.ChatColor;
 
 @RequiredArgsConstructor
 public enum Title {
@@ -15,6 +16,8 @@ public enum Title {
     MANAGEMENT("management", "§4§lMANAGEMENT", "", "Is either fleance or PatrickGHG", 152),
     SEASON_3_CHAMPION_MATCHMAKING("season3_champion_matchmaking", "1vs1 §c§lCHAMPION", "§c§l1vs1", "Finished Top 3 at 1vs1", 283),
     SEASON_3_CHAMPION_KITPVP("season3_champion_kitpvp", "KitPvP §c§lCHAMPION", "§c§lKITPVP", "Finished Top 3 at one of the kitpvp warps", 54),
+
+    NORISK_CLIENT("norisk_client", "§bNoRisk §fClient", ChatColor.BLUE + "NRC", "Moin", 416),
     ;
 
     @Getter
