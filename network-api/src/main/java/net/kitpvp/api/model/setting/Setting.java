@@ -17,7 +17,7 @@ public interface Setting {
     TrueFalseSetting CLAN_CHAT = trueFalse("clanChat", false);
     TrueFalseSetting MESSAGES = trueFalse("messages", true);
     TrueFalseSetting TITLE_FORCED_OFF = trueFalse("titleForcedOff", false);
-    TrueFalseSetting ONLY_MESSAGES = trueFalse("onlyMessages", false);
+    TrueFalseSetting ONLY_MESSAGES = trueFalse("onlyMessages2", false);
     TrueFalseSetting VOTED = trueFalse("votedForServer", false);
     ToggleSetting TIME_LOCK = toggle("timeLock", "default", "day", "night");
 

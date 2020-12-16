@@ -23,33 +23,33 @@ import static net.kitpvp.stats.api.functions.keys.KeyFunctions.immutable;
 public interface Stats {
 
     LongSStageKey ONLINE_TIME =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("online")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("online")).stage(); // check
     LongSStageKey AFK_TIME =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("afk")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("afk")).stage(); // check
     SStatsKey<String> MONGO_ID =
             SStatsKey.<String>builder().keyBuilder(builder -> builder.path("_id")).defaultValue((String) null).build();
     LongSStageKey KILLS =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.kills")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.kills")).stage(); // check
     LongSStageKey DEATHS =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.deaths")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.deaths")).stage(); // check
     LongSStatsKey KILLSTREAK =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("alltime.global.killstreak.current")).build();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("alltime.global.killstreak.current")).build(); // check
     LongSStageKey KILLSTREAK_RECORD =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage(); // check
     LongStageKey<Warp> KILLSTREAKS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
     LongSStageKey CLEAN_KILLS =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage();
+            LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage(); // check
     LongStageKey<Warp> KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
     LongStageKey<Warp> DEATHS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
     LongStageKey<Warp> CLEAN_KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.cleanKills").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.cleanKills").function(EnumUtils::nameToLowercase)).stage(); // check
 
     // Heads
     LongStageKey<HeadRarity> HEADS_RECEIVED =
-            LongStatsKey.<HeadRarity>builder().keyBuilder(builder -> builder.prefix("heads.received").function(EnumUtils::nameToLowercase)).stage();
+            LongStatsKey.<HeadRarity>builder().keyBuilder(builder -> builder.prefix("heads.received").function(EnumUtils::nameToLowercase)).stage(); // check
 
     // Events
 
