@@ -3,11 +3,18 @@ package net.kitpvp.api.model.stats;
 import net.kitpvp.api.Warp;
 import net.kitpvp.api.heads.HeadRarity;
 import net.kitpvp.api.utils.EnumUtils;
+import net.kitpvp.stats.builder.keys.VoidKeyBuilder;
 import net.kitpvp.stats.keys.SStatsKey;
 import net.kitpvp.stats.keys.array.ArraySStatsKey;
+import net.kitpvp.stats.keys.bool.BooleanSSeasonKey;
+import net.kitpvp.stats.keys.bool.BooleanSStageKey;
+import net.kitpvp.stats.keys.bool.BooleanSStatsKey;
 import net.kitpvp.stats.keys.numeric.*;
+import net.kitpvp.stats.keys.set.SetSStageKey;
+import net.kitpvp.stats.keys.set.SetSStatsKey;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static net.kitpvp.stats.api.functions.keys.KeyFunctions.alltime;
@@ -29,6 +36,8 @@ public interface Stats {
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("alltime.global.killstreak.current")).build();
     LongSStageKey KILLSTREAK_RECORD =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage();
+    LongStageKey<Warp> KILLSTREAKS_AT_WARP =
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(EnumUtils::nameToLowercase)).stage();
     LongSStageKey CLEAN_KILLS =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage();
     LongStageKey<Warp> KILLS_AT_WARP =
@@ -72,9 +81,9 @@ public interface Stats {
 
     // Misc
     LongSStageKey MISC_SOUPS_EATEN =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("misc.soupsEaten")).stage();
+            LongSStatsKey.builder().keyBuilder(LocalStats.SOUPS_EATEN_KEY_BUILDER).stage();
     LongSStageKey MISC_BLOCKS_WALKED =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("misc.blocksWalked")).stage();
+            LongSStatsKey.builder().keyBuilder(LocalStats.BLOCKS_WALKED_KEY_BUILDER).stage();
     IntStatsKey<Integer> MISC_VOTINGS =
             IntStatsKey.<Integer>builder().keyBuilder(builder -> builder.prefix("misc.votings").function(Objects::toString)).def(-1).build();
     SStatsKey<String> API_KEY =
@@ -82,4 +91,19 @@ public interface Stats {
     ArraySStatsKey<Long> ACHIEVEMENTS =
             ArraySStatsKey.<Long>builder().keyBuilder(builder -> builder.path("misc.achievements")).build();
 
+    // Season Pass
+    BooleanSStageKey SEASONPASS_STAGE_DONE =
+            BooleanSStatsKey.builder().keyBuilder(builder -> builder.path("seasonpass.done")).stage();
+    SetSStageKey<Integer> SEASONPASS_COMPLETED_CHALLENGES =
+            SetSStatsKey.<Integer>builder().keyBuilder(builder -> builder.path("seasonpass.completed")).stage();
+
+    interface LocalStats {
+        Consumer<VoidKeyBuilder> BLOCKS_WALKED_KEY_BUILDER = builder -> builder.path("misc.blocksWalked");
+        Consumer<VoidKeyBuilder> SOUPS_EATEN_KEY_BUILDER = builder -> builder.path("misc.soupsEaten");
+
+        LongSStatsKey BLOCKS_WALKED =
+                LongSStatsKey.builder().keyBuilder(BLOCKS_WALKED_KEY_BUILDER).build();
+        LongSStatsKey SOUPS_EATEN =
+                LongSStatsKey.builder().keyBuilder(SOUPS_EATEN_KEY_BUILDER).build();
+    }
 }

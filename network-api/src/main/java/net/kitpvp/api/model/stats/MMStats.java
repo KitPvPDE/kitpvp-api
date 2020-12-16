@@ -36,12 +36,8 @@ public interface MMStats {
             IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("1vs1.stats").function(Function.identity()).suffix("kills")).stage();
     IntStageKey<String> DEATHS_WITH_KIT =
             IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("1vs1.stats").function(Function.identity()).suffix("deaths")).stage();
-    SStatsKey<String> KIT_SELECTED =
-            null;
-    IntSStatsKey KIT_INDEX =
-            null;
-    ArraySStatsKey<Document> KITS =
-            null;
+    IntStageKey<String> WINS_AGAINST_BOT =
+            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("1vs1.bot").function(Function.identity()).suffix("wins")).stage();
     ArraySStatsKey<String> PREVIOUS_OPPONENTS =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("alltime.1vs1.previous.opponents")).build();
     ArraySStatsKey<String> BANNED_KITS =
