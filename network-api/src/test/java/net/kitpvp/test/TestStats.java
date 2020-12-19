@@ -1,9 +1,6 @@
 package net.kitpvp.test;
 
-import net.kitpvp.api.model.stats.ClanStats;
-import net.kitpvp.api.model.stats.MMStats;
-import net.kitpvp.api.model.stats.ProfileStats;
-import net.kitpvp.api.model.stats.Stats;
+import net.kitpvp.api.model.stats.*;
 import net.kitpvp.stats.StatsReader;
 import net.kitpvp.stats.bson.BsonStatsReader;
 import net.kitpvp.stats.reader.Reader;
@@ -33,5 +30,12 @@ public class TestStats {
         StatsReader statsReader = new BsonStatsReader();
 
         assertEquals(1000, statsReader.getIntKey(MMStats.ELO, Reader.ALLTIME));
+    }
+
+    @Test
+    public void testKitPvP() {
+        StatsReader statsReader = new BsonStatsReader();
+
+        assertTrue(statsReader.getKeys(KitPvPStats.KITPVP_PATH_EXP).isEmpty());
     }
 }
