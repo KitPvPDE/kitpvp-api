@@ -13,7 +13,7 @@ public enum ChatFormat implements MsgFormat {
     MATCHMAKING("»", ChatColor.WHITE, ChatColor.WHITE, ChatColor.GRAY),
     NETWORK("»»", ChatColor.DARK_AQUA, ChatColor.WHITE, ChatColor.GRAY),
     KITPVP(">»", ChatColor.GREEN, ChatColor.WHITE, ChatColor.GRAY),
-
+    PUNISHMENT(">»»", ChatColor.RED, ChatColor.RED, ChatColor.DARK_AQUA),
     ;
 
     private final String prefix;

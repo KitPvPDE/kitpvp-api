@@ -31,9 +31,10 @@ public interface ProfileStats {
     ArraySStatsKey<String> PROFILE_PAST_ADDRESS =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("addresses")).build();
     StatsKey<String, String> PROFILE_SETTINGS =
-            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("settings").function(Function.identity())).defaultValue("").build();
+            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("settings").function(Function.identity()).
+                    inverse(Function.identity())).defaultValue("").build();
     StatsKey<String, String> PROFILE_SERVER_GROUP =
-            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("groups").function(Function.identity())).defaultValue("default").build();
+            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("groups").function(Function.identity()).inverse(Function.identity())).defaultValue("default").build();
 
 
 }

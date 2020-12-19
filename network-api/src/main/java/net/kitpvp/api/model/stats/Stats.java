@@ -2,25 +2,23 @@ package net.kitpvp.api.model.stats;
 
 import net.kitpvp.api.Warp;
 import net.kitpvp.api.heads.HeadRarity;
-import net.kitpvp.api.utils.EnumUtils;
+import net.kitpvp.stats.api.keys.Key;
+import net.kitpvp.stats.api.keys.Keys;
 import net.kitpvp.stats.builder.keys.VoidKeyBuilder;
 import net.kitpvp.stats.keys.SStatsKey;
 import net.kitpvp.stats.keys.array.ArraySStatsKey;
-import net.kitpvp.stats.keys.bool.BooleanSSeasonKey;
 import net.kitpvp.stats.keys.bool.BooleanSStageKey;
 import net.kitpvp.stats.keys.bool.BooleanSStatsKey;
 import net.kitpvp.stats.keys.numeric.*;
 import net.kitpvp.stats.keys.set.SetSStageKey;
 import net.kitpvp.stats.keys.set.SetSStatsKey;
 
-import java.util.Objects;
 import java.util.function.Consumer;
-import java.util.function.Function;
-
-import static net.kitpvp.stats.api.functions.keys.KeyFunctions.alltime;
-import static net.kitpvp.stats.api.functions.keys.KeyFunctions.immutable;
 
 public interface Stats {
+
+    Key<Warp> WARP_KEY = Key.<Warp>builder().function(Warp::nameToLowercase).inverse(Warp::warpFromLowercase).buildKey();
+    Key<HeadRarity> HEAD_RARITY_KEY = Key.<HeadRarity>builder().function(HeadRarity::nameToLowercase).inverse(HeadRarity::rarityFromLowercase).buildKey();
 
     LongSStageKey ONLINE_TIME =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("online")).stage(); // check
@@ -37,30 +35,30 @@ public interface Stats {
     LongSStageKey KILLSTREAK_RECORD =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage(); // check
     LongStageKey<Warp> KILLSTREAKS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(WARP_KEY)).stage(); // check
     LongSStageKey CLEAN_KILLS =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage(); // check
     LongStageKey<Warp> KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(WARP_KEY)).stage(); // check
     LongStageKey<Warp> DEATHS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(EnumUtils::nameToLowercase)).stage(); // check
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(WARP_KEY)).stage(); // check
     LongStageKey<Warp> CLEAN_KILLS_AT_WARP =
-            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.cleanKills").function(EnumUtils::nameToLowercase)).stage(); // check
+            LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.cleanKills").function(WARP_KEY)).stage(); // check
 
     // Heads
     LongStageKey<HeadRarity> HEADS_RECEIVED =
-            LongStatsKey.<HeadRarity>builder().keyBuilder(builder -> builder.prefix("heads.received").function(EnumUtils::nameToLowercase)).stage(); // check
+            LongStatsKey.<HeadRarity>builder().keyBuilder(builder -> builder.prefix("heads.received").function(HEAD_RARITY_KEY)).stage(); // check
 
     // Events
 
     LongStageKey<String> EVENT_TAKEN_PART =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Function.identity()).suffix("participated")).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Keys.STRING_KEY).suffix("participated")).stage();
     LongStageKey<String> EVENT_WINS =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Function.identity()).suffix("won")).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Keys.STRING_KEY).suffix("won")).stage();
     LongStageKey<String> EVENT_KILLS =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Function.identity()).suffix("kills")).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Keys.STRING_KEY).suffix("kills")).stage();
     LongStageKey<String> EVENT_DEATHS =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Function.identity()).suffix("deaths")).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("events").function(Keys.STRING_KEY).suffix("deaths")).stage();
     LongSStageKey GLOBAL_EVENT_TAKEN_PART =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("events.global.participated")).stage();
     LongSStageKey GLOBAL_EVENT_WINS =
@@ -73,11 +71,11 @@ public interface Stats {
 
     // Training
     IntStageKey<String> TRAINING_ITERATIONS =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("tries")).stage();
+            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Keys.STRING_KEY).suffix("tries")).stage();
     IntStageKey<String> TRAINING_COMPLETED =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("completed")).stage();
+            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Keys.STRING_KEY).suffix("completed")).stage();
     LongStageKey<String> TRAINING_RECORD =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Function.identity()).suffix("record")).def(-1).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Keys.STRING_KEY).suffix("record")).def(-1).stage();
 
     // Misc
     LongSStageKey MISC_SOUPS_EATEN =
@@ -85,7 +83,7 @@ public interface Stats {
     LongSStageKey MISC_BLOCKS_WALKED =
             LongSStatsKey.builder().keyBuilder(LocalStats.BLOCKS_WALKED_KEY_BUILDER).stage();
     IntStatsKey<Integer> MISC_VOTINGS =
-            IntStatsKey.<Integer>builder().keyBuilder(builder -> builder.prefix("misc.votings").function(Objects::toString)).def(-1).build();
+            IntStatsKey.<Integer>builder().keyBuilder(builder -> builder.prefix("misc.votings").function(IntStatsKey.INT_KEY)).def(-1).build();
     SStatsKey<String> API_KEY =
             SStatsKey.<String>builder().keyBuilder(builder -> builder.path("misc.website.apiKey")).defaultValue("").build();
     ArraySStatsKey<Long> ACHIEVEMENTS =

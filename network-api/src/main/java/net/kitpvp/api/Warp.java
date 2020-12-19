@@ -1,5 +1,7 @@
 package net.kitpvp.api;
 
+import net.kitpvp.api.utils.EnumUtils;
+
 public enum Warp {
 
     NONE,
@@ -36,5 +38,13 @@ public enum Warp {
             default:
                 return name();
         }
+    }
+
+    public String nameToLowercase() {
+        return this.name().toLowerCase();
+    }
+
+    public static Warp warpFromLowercase(String name) {
+        return EnumUtils.matchIgnoringCase(Warp.class, name);
     }
 }

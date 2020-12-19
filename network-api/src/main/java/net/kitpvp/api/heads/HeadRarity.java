@@ -2,6 +2,7 @@ package net.kitpvp.api.heads;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.kitpvp.api.utils.EnumUtils;
 import net.md_5.bungee.api.ChatColor;
 
 @Getter
@@ -30,5 +31,13 @@ public enum HeadRarity {
         }
 
         return null;
+    }
+
+    public String nameToLowercase() {
+        return this.name().toLowerCase();
+    }
+
+    public static HeadRarity rarityFromLowercase(String rarity) {
+        return EnumUtils.matchIgnoringCase(HeadRarity.class, rarity);
     }
 }
