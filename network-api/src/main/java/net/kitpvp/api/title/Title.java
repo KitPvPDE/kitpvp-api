@@ -16,6 +16,8 @@ public enum Title {
     MANAGEMENT("management", "§4§lMANAGEMENT", "", "Is either fleance or PatrickGHG", 152),
     SEASON_3_CHAMPION_MATCHMAKING("season3_champion_matchmaking", "1vs1 §c§lCHAMPION", "§c§l1vs1", "Finished Top 3 at 1vs1", 283),
     SEASON_3_CHAMPION_KITPVP("season3_champion_kitpvp", "KitPvP §c§lCHAMPION", "§c§lKITPVP", "Finished Top 3 at one of the kitpvp warps", 54),
+    SEASON_4_CHAMPION_MATCHMAKING("season4_champion_matchmaking", "1vs1 §a§lCHAMPION", "", "Finished Top 3 at 1vs1 in Season 4", 283),
+    SEASON_4_CHAMPION_KITPVP("season4_champion_kitpvp", "KitPvP §a§lCHAMPION", "", "Finished Top 3 at FFA or Feast in Season 4", 54),
 
     NORISK_CLIENT("norisk_client", "§bNoRisk §fClient", ChatColor.BLUE + "NRC", "Moin", 416),
     ;
