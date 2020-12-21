@@ -16,7 +16,8 @@ public interface LegacyStats {
     ArraySStatsKey<String> TITLES_KEY =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("titles")).build();
     StatsKey<String, String> SETTINGS_KEY =
-            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("misc.settings").function(Function.identity())).defaultValue("").build();
+            StatsKey.<String, String>builder().keyBuilder(builder -> builder.prefix("misc.settings").
+                    function(StatsKey.STRING_KEY)).defaultValue("").build();
 
     ArraySStatsKey<String> BLOCKED_PLAYERS =
             ArraySStatsKey.<String>builder().keyBuilder(builder -> builder.path("misc.blocked")).build();
