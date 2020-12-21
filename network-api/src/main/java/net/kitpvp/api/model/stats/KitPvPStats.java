@@ -26,6 +26,6 @@ public interface KitPvPStats {
     LongStageKey<String> KITPVP_KILLSTREAK_WITH_KIT =
             LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.STRING_KEY).suffix("killstreak")).stage();
     LongStageKey<String> KITPVP_SPECIAL_ACTION_WITH_KIT =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("kitpvp.stats.").function(StatsKey.STRING_KEY).suffix("value")).stage();
+            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.STRING_KEY).suffix("value")).stage();
 
 }
