@@ -7,7 +7,6 @@ import net.kitpvp.stats.keys.numeric.LongStageKey;
 import net.kitpvp.stats.keys.numeric.LongStatsKey;
 
 import java.util.Set;
-import java.util.function.Function;
 
 public interface KitPvPStats {
 

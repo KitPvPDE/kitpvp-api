@@ -1,6 +1,7 @@
 package net.kitpvp.test;
 
 import net.kitpvp.api.model.stats.*;
+import net.kitpvp.api.model.website.Model;
 import net.kitpvp.stats.StatsReader;
 import net.kitpvp.stats.bson.BsonStatsReader;
 import net.kitpvp.stats.reader.Reader;
@@ -37,5 +38,12 @@ public class TestStats {
         StatsReader statsReader = new BsonStatsReader();
 
         assertTrue(statsReader.getKeys(KitPvPStats.KITPVP_PATH_EXP).isEmpty());
+    }
+
+    @Test
+    public void testWebsite() {
+        StatsReader statsReader = new BsonStatsReader();
+
+        assertNull(statsReader.getStatKey(Model.TOKEN));
     }
 }
