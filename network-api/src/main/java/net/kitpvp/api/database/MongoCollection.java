@@ -21,6 +21,9 @@ public enum MongoCollection implements Collection {
 
     // discord
     DC_USERS("users", "discord_db"),
+
+    // ctw
+    CTW_MATCHES("ctw_matches", "kitpvp_db"),
     ;
 
     @Getter

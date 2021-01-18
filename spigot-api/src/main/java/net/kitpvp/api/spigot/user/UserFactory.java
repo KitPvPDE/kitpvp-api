@@ -1,8 +1,10 @@
-package net.kitpvp.api.user;
+package net.kitpvp.api.spigot.user;
 
 import net.kitpvp.mongodbapi.database.Collection;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-public class UserFactory<T extends User> {
+public class UserFactory<T extends User> implements IUserFactory<T, Player> {
 
     private final Collection collection;
     private final BiFunction<Collection, Player, T> createFunction;
@@ -27,7 +29,7 @@ public class UserFactory<T extends User> {
         return Bukkit.getOnlinePlayers().stream().map(this::getUser).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
-    public T getUser(Player player, boolean load, boolean store) {
+    @Nullable public T getUser(Player player, boolean load, boolean store) {
         if(player == null)
             return null;
 
@@ -44,7 +46,7 @@ public class UserFactory<T extends User> {
         return user;
     }
 
-    public T getUser(Player player) {
+    public @NotNull T getUser(Player player) {
         return this.getUser(player, false, false);
     }
 

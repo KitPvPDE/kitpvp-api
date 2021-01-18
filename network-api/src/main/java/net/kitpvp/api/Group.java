@@ -2,6 +2,7 @@ package net.kitpvp.api;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.kitpvp.api.utils.EnumUtils;
 import net.md_5.bungee.api.ChatColor;
 
 @RequiredArgsConstructor
@@ -21,6 +22,10 @@ public enum Group {
     HAZARD(600),
     PRO(700),
     DEFAULT(1000);
+
+    public static Group matchIgnoringCase(String name) {
+        return EnumUtils.matchIgnoringCase(Group.class, name);
+    }
 
     @Getter
     private final int power;
