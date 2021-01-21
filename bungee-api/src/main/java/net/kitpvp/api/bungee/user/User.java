@@ -35,6 +35,6 @@ public interface User extends IUser, Connection {
     }
 
     static @Nullable User getUser(UUID playerId) {
-        return BungeePlugin.getPlugin().getNetworkApi().getUserFactory().getUser(playerId);
+        return BungeePlugin.getPlugin().getApi().getUserFactory().getUser(playerId);
     }
 }

@@ -12,17 +12,17 @@ import java.util.UUID;
 public interface SpigotPlugin extends NetworkPlugin<User> {
 
     @Override
-    @NotNull SpigotAPI getNetworkApi();
+    @NotNull SpigotAPI getApi();
 
     static SpigotPlugin getPlugin() {
         return (SpigotPlugin) Bukkit.getPluginManager().getPlugin("PluginAPI");
     }
 
     static @NotNull User getUser(Player player) {
-        return getPlugin().getNetworkApi().getUserFactory().getUser(player);
+        return getPlugin().getApi().getUserFactory().getUser(player);
     }
 
     static @Nullable User getUser(UUID playerId) {
-        return getPlugin().getNetworkApi().getUserFactory().getUser(playerId);
+        return getPlugin().getApi().getUserFactory().getUser(playerId);
     }
 }

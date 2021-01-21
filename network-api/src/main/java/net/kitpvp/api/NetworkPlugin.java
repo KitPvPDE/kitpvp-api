@@ -5,5 +5,5 @@ import org.jetbrains.annotations.NotNull;
 
 public interface NetworkPlugin<T extends IUser> {
 
-    @NotNull NetworkAPI<T> getNetworkApi();
+    @NotNull NetworkAPI<T> getApi();
 }

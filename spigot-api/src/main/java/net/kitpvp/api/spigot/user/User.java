@@ -40,6 +40,6 @@ public interface User extends IUser, ChatConnection {
     }
 
     static @Nullable User getUser(UUID playerId) {
-        return SpigotPlugin.getPlugin().getNetworkApi().getUserFactory().getUser(playerId);
+        return SpigotPlugin.getPlugin().getApi().getUserFactory().getUser(playerId);
     }
 }
