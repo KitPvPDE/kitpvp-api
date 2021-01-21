@@ -21,6 +21,8 @@ public enum MongoCollection implements Collection {
 
     // discord
     DC_USERS("users", "discord_db"),
+    DC_MUTES("mutes", "discord_db"),
+    DC_BANS("bans", "discord_db"),
 
     // ctw
     CTW_MATCHES("ctw_matches", "kitpvp_db"),
