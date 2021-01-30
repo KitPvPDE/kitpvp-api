@@ -2,12 +2,13 @@ package net.kitpvp.api.group;
 
 import net.kitpvp.api.Group;
 import net.kitpvp.chat.api.Connection;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
 public interface GroupManager {
 
-    Group getPlayerGroup(UUID playerId);
+    @NotNull Group getPlayerGroup(@NotNull UUID playerId);
 
-    Group getPlayerGroup(Connection connection);
+    @NotNull Group getPlayerGroup(@NotNull Connection connection);
 }

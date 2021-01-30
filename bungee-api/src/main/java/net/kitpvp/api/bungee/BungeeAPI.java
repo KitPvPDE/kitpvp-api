@@ -8,5 +8,5 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 public interface BungeeAPI extends NetworkAPI<User> {
 
     @Override
-    IUserFactory<User, ProxiedPlayer> getUserFactory();
+    IUserFactory<? extends User, ProxiedPlayer> getUserFactory();
 }

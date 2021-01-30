@@ -39,6 +39,11 @@ public interface User extends IUser, ChatConnection {
         this.sendMessage(ChatMessageType.CHAT, baseComponents);
     }
 
+    @Override
+    default boolean supportsLineFeed() {
+        return false;
+    }
+
     static @Nullable User getUser(UUID playerId) {
         return SpigotPlugin.getPlugin().getApi().getUserFactory().getUser(playerId);
     }

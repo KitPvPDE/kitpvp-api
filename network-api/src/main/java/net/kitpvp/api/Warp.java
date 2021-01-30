@@ -44,7 +44,12 @@ public enum Warp {
         return this.name().toLowerCase();
     }
 
-    public static Warp warpFromLowercase(String name) {
+    public static Warp matchIgnoringCase(String name) {
         return EnumUtils.matchIgnoringCase(Warp.class, name);
+    }
+
+    @Deprecated
+    public static Warp warpFromLowercase(String name) {
+        return matchIgnoringCase(name);
     }
 }

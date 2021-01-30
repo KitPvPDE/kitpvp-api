@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 
 public interface Stats {
 
-    Key<Warp> WARP_KEY = Key.<Warp>builder().function(Warp::nameToLowercase).inverse(Warp::warpFromLowercase).buildKey();
+    Key<Warp> WARP_KEY = Key.<Warp>builder().function(Warp::nameToLowercase).inverse(Warp::matchIgnoringCase).buildKey();
     Key<HeadRarity> HEAD_RARITY_KEY = Key.<HeadRarity>builder().function(HeadRarity::nameToLowercase).inverse(HeadRarity::rarityFromLowercase).buildKey();
 
     LongSStageKey ONLINE_TIME =
@@ -30,11 +30,13 @@ public interface Stats {
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.kills")).stage(); // check
     LongSStageKey DEATHS =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.deaths")).stage(); // check
-    LongSStatsKey KILLSTREAK =
-            LongSStatsKey.builder().keyBuilder(builder -> builder.path("alltime.global.killstreak.current")).build(); // check
+    IntSStageKey ACTIVE_KILLSTREAK =
+            IntSStatsKey.builder().keyBuilder(builder -> builder.path("global.activeKillstreak.global")).stage(); // check
+    IntStageKey<Warp> ACTIVE_KILLSTREAK_AT_WARP =
+            IntStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.activeKillstreak").function(WARP_KEY)).stage();
     LongSStageKey KILLSTREAK_RECORD =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.killstreak.record")).stage(); // check
-    LongStageKey<Warp> KILLSTREAKS_AT_WARP =
+    LongStageKey<Warp> KILLSTREAK_RECORDS_AT_WARP =
             LongStatsKey.<Warp>builder().keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(WARP_KEY)).stage(); // check
     LongSStageKey CLEAN_KILLS =
             LongSStatsKey.builder().keyBuilder(builder -> builder.path("global.cleanKills.global")).stage(); // check
