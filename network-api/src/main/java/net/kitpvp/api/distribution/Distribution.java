@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 @RequiredArgsConstructor
 public enum Distribution {
 
-    SPIGOT("org.bukkit.Bukkit", "net.kitpvp.pluginapi.NetworkPlugin"),
+    SPIGOT("org.bukkit.Bukkit", "net.kitpvp.plugins.kitpvpcore.KitPvPCore"),
     BUNGEE("net.md_5.bungee.api.ProxyServer", "net.kitpvp.network.waterfall.WaterfallPlugin"),
     UNKNOWN("java.lang.Object", "java.lang.String");
 

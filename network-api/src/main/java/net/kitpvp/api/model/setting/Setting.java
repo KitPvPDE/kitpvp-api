@@ -12,6 +12,7 @@ public interface Setting {
     NormalSetting TITLE = normal("title", "none");
     NormalSetting HEAD = normal("head", "");
     NormalSetting APPEALS_BLOCKED = normal("appealsBlocked", "");
+    NormalSetting TAG_RANK = normal("tagRank", "");
     TrueFalseSetting TAG = trueFalse("tag", true);
     TrueFalseSetting CLAN_TAG = trueFalse("clanTag", true);
     TrueFalseSetting CLAN_CHAT = trueFalse("clanChat", false);
