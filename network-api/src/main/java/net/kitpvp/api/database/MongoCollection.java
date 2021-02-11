@@ -12,6 +12,7 @@ public enum MongoCollection implements Collection {
 
     // kitpvp
     KITPVP_STATS("stats", "kitpvp_db"),
+    KITPVP_PROFILES("profiles", "kitpvp_db"),
 
     // norisk
     NORISK_USERS("users", "norisk_db"),
