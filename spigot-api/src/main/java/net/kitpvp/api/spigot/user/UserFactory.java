@@ -6,10 +6,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -27,6 +24,10 @@ public class UserFactory<T extends User> implements IUserFactory<T, Player> {
 
     public List<T> getOnlineUsers() {
         return Bukkit.getOnlinePlayers().stream().map(this::getUser).filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
+    public List<T> getUsers() {
+        return new ArrayList<>(this.loadedUsers.values());
     }
 
     @Nullable public T getUser(Player player, boolean load, boolean store) {

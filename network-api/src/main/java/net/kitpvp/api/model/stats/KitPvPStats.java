@@ -1,10 +1,10 @@
 package net.kitpvp.api.model.stats;
 
 import net.kitpvp.api.utils.ArrayUtils;
+import net.kitpvp.stats.keys.IntStatsKey;
+import net.kitpvp.stats.keys.LongStageKey;
+import net.kitpvp.stats.keys.LongStatsKey;
 import net.kitpvp.stats.keys.StatsKey;
-import net.kitpvp.stats.keys.numeric.IntStatsKey;
-import net.kitpvp.stats.keys.numeric.LongStageKey;
-import net.kitpvp.stats.keys.numeric.LongStatsKey;
 
 import java.util.Set;
 

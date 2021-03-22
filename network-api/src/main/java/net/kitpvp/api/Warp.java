@@ -22,7 +22,7 @@ public enum Warp {
             case FEAST:
                 return "Feast";
             case FFA:
-                return "FFA";
+                return "1v1fps";
             case EARLYHG:
                 return "EarlyHG";
             case NONE:

@@ -1,19 +1,19 @@
 package net.kitpvp.api.model.stats;
 
-import net.kitpvp.stats.keys.numeric.IntSStageKey;
-import net.kitpvp.stats.keys.numeric.IntSStatsKey;
+import net.kitpvp.stats.keys.IntVoidStageKey;
+import net.kitpvp.stats.keys.IntVoidStatsKey;
 
 public interface CTW {
-    IntSStageKey KILLS = IntSStatsKey.builder().
+    IntVoidStageKey KILLS = IntVoidStatsKey.builder().
             keyBuilder(builder -> builder.path("ctw.kills")).
             stage();
-    IntSStageKey DEATHS = IntSStatsKey.builder().
+    IntVoidStageKey DEATHS = IntVoidStatsKey.builder().
             keyBuilder(builder -> builder.path("ctw.deaths")).
             stage();
-    IntSStageKey WOOLS = IntSStatsKey.builder().
+    IntVoidStageKey WOOLS = IntVoidStatsKey.builder().
             keyBuilder(builder -> builder.path("ctw.wools")).
             stage();
-    IntSStageKey POINTS = IntSStatsKey.builder().
+    IntVoidStageKey POINTS = IntVoidStatsKey.builder().
             keyBuilder(builder -> builder.path("ctw.points")).
             stage();
 }
