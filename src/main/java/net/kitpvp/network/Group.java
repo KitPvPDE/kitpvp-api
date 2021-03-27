@@ -38,10 +38,20 @@ public enum Group {
         return this.getPower() <= other.getPower();
     }
 
+    public boolean isBelow(Group other) {
+        return this.getPower() > other.getPower();
+    }
+
+    public boolean isBelowOrEqual(Group other) {
+        return this.getPower() >= other.getPower();
+    }
+
+    @Deprecated
     public boolean isLower(Group other) {
         return this.getPower() > other.getPower();
     }
 
+    @Deprecated
     public boolean isLowerOrEqual(Group other) {
         return this.getPower() >= other.getPower();
     }
