@@ -7,6 +7,7 @@ import net.kitpvp.stats.Key;
 import net.kitpvp.stats.keys.*;
 
 import java.util.Set;
+import java.util.function.UnaryOperator;
 
 public interface Statistics {
 
@@ -18,66 +19,75 @@ public interface Statistics {
             .function(HeadRarity::nameToLowercase)
             .inverse(HeadRarity::rarityFromLowercase)
             .buildKey();
+    LongVoidStageKey ONLINE_STREAK = LongVoidStatsKey.builder()
+            .keyBuilder(builder -> builder.path("streak.days"))
+            .stage(Remap.identity());
+    LongVoidStageKey ONLINE_LAST_DAY = LongVoidStatsKey.builder()
+            .keyBuilder(builder -> builder.path("streak.last-day"))
+            .stage(Remap.identity());
+    LongVoidStageKey ONLINE_MAX_STREAK = LongVoidStatsKey.builder()
+            .keyBuilder(builder -> builder.path("streak.record"))
+            .stage(Remap.identity());
     LongVoidStageKey ONLINE_TIME = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("online"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     LongVoidStageKey AFK_TIME = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("afk"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     VoidStatsKey<String> MONGO_ID = VoidStatsKey.<String>builder()
             .keyBuilder(builder -> builder.path("_id"))
             .defaultNull()
             .build();
     LongVoidStageKey KILLS = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("global.kills"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     LongVoidStageKey DEATHS = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("global.deaths"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     IntVoidStageKey ACTIVE_KILLSTREAK = IntVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("global.activeKillstreak.global"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     IntStageKey<Warp> ACTIVE_KILLSTREAK_AT_WARP = IntStatsKey.<Warp>builder()
             .keyBuilder(builder -> builder.prefix("global.activeKillstreak").function(WARP_KEY))
-            .stage();
+            .stage(Remap.seasonPass());
     LongVoidStageKey KILLSTREAK_RECORD = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("global.killstreak.record"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     LongStageKey<Warp> KILLSTREAK_RECORDS_AT_WARP = LongStatsKey.<Warp>builder()
             .keyBuilder(builder -> builder.prefix("global.streaksAtWarp").function(WARP_KEY))
-            .stage(); // check
+            .stage(Remap.seasonPass()); // check
     LongVoidStageKey CLEAN_KILLS = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("global.cleanKills.global"))
-            .stage(); // check
+            .stage(Remap.identity()); // check
     LongStageKey<Warp> KILLS_AT_WARP = LongStatsKey.<Warp>builder()
             .keyBuilder(builder -> builder.prefix("global.killsAtWarp").function(WARP_KEY))
-            .stage(); // check
+            .stage(Remap.seasonPass()); // check
     LongStageKey<Warp> DEATHS_AT_WARP = LongStatsKey.<Warp>builder()
             .keyBuilder(builder -> builder.prefix("global.deathsAtWarp").function(WARP_KEY))
-            .stage(); // check
+            .stage(Remap.seasonPass()); // check
     LongStageKey<Warp> CLEAN_KILLS_AT_WARP = LongStatsKey.<Warp>builder()
             .keyBuilder(builder -> builder.prefix("global.cleanKills").function(WARP_KEY))
-            .stage(); // check
+            .stage(Remap.seasonPass()); // check
 
     // Heads
     LongStageKey<HeadRarity> HEADS_RECEIVED = LongStatsKey.<HeadRarity>builder()
             .keyBuilder(builder -> builder.prefix("heads.received").function(HEAD_RARITY_KEY))
-            .stage(); // check
+            .stage(Remap.seasonPass()); // check
 
     // Events
 
     LongStageKey<String> EVENT_TAKEN_PART = LongStatsKey.<String>builder()
             .keyBuilder(builder -> builder.prefix("events").function(Key.identity()).suffix("participated"))
-            .stage();
+            .stage(Remap.seasonPass());
     LongStageKey<String> EVENT_WINS = LongStatsKey.<String>builder()
             .keyBuilder(builder -> builder.prefix("events").function(Key.identity()).suffix("won"))
-            .stage();
+            .stage(Remap.seasonPass());
     LongStageKey<String> EVENT_KILLS = LongStatsKey.<String>builder()
             .keyBuilder(builder -> builder.prefix("events").function(Key.identity()).suffix("kills"))
-            .stage();
+            .stage(Remap.seasonPass());
     LongStageKey<String> EVENT_DEATHS = LongStatsKey.<String>builder()
             .keyBuilder(builder -> builder.prefix("events").function(Key.identity()).suffix("deaths"))
-            .stage();
+            .stage(Remap.seasonPass());
     LongVoidStageKey GLOBAL_EVENT_TAKEN_PART =
             EVENT_TAKEN_PART.bind("global");
     LongVoidStageKey GLOBAL_EVENT_WINS =
@@ -89,20 +99,31 @@ public interface Statistics {
 
 
     // Training
-    IntStageKey<String> TRAINING_ITERATIONS =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("tries")).stage();
-    IntStageKey<String> TRAINING_COMPLETED =
-            IntStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("completed")).stage();
-    LongStageKey<String> TRAINING_RECORD =
-            LongStatsKey.<String>builder().keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("record")).def(-1).stage();
+    IntStageKey<String> TRAINING_ITERATIONS = IntStatsKey.<String>builder()
+            .keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("tries"))
+            .stage(Remap.seasonPass());
+    IntStageKey<String> TRAINING_COMPLETED = IntStatsKey.<String>builder()
+            .keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("completed"))
+            .stage(Remap.seasonPass());
+    LongStageKey<String> TRAINING_RECORD = LongStatsKey.<String>builder()
+            .keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("record"))
+            .def(-1)
+            .stage(Remap.seasonPass());
 
     // Misc
     LongVoidStageKey MISC_SOUPS_EATEN = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("misc.soupsEaten"))
-            .stage();
+            .stage(Remap.identity());
     LongVoidStageKey MISC_BLOCKS_WALKED = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("misc.blocksWalked"))
-            .stage();
+            .stage(Remap.identity());
+    LongStageKey<Warp> BLOCKS_WALKED = LongStatsKey.<Warp>builder()
+            .keyBuilder(builder -> builder.prefix("incremental").function(WARP_KEY).suffix("blocks"))
+            .stage(Remap.seasonPass());
+    LongVoidStageKey GLOBAL_BLOCKS_WALKED = LongVoidStatsKey.builder()
+            .keyBuilder(builder -> builder.path("incremental.global.blocks"))
+            .stage(Remap.identity());
+
     IntStatsKey<Integer> MISC_VOTINGS = IntStatsKey.<Integer>builder()
             .keyBuilder(builder -> builder.prefix("misc.votings").function(IntStatsKey.INT_KEY))
             .def(-1)
@@ -118,10 +139,10 @@ public interface Statistics {
     // Season Pass
     BooleanVoidStageKey SEASONPASS_STAGE_DONE = BooleanVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("seasonpass.done"))
-            .stage();
+            .stage(Remap.identity());
     SetVoidStageKey<Integer> SEASONPASS_COMPLETED_CHALLENGES = SetVoidStatsKey.<Integer>builder()
             .keyBuilder(builder -> builder.path("seasonpass.completed"))
-            .stage();
+            .stage(Remap.identity());
 
     interface KitPvP {
 
@@ -136,16 +157,20 @@ public interface Statistics {
                 .build();
         LongStageKey<String> KITPVP_KILLS_WITH_KIT = LongStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.identity()).suffix("kills"))
-                .stage();
+                .stage(Remap.seasonPass());
+        LongVoidStageKey KITPVP_KILLS_WITH_ANY_KIT =
+                KITPVP_KILLS_WITH_KIT.bind("any");
+        LongVoidStageKey KITPVP_KILLS_WITH_ANY_PATH =
+                KITPVP_KILLS_WITH_KIT.bind("anyPath");
         LongStageKey<String> KITPVP_DEATHS_WITH_KIT = LongStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.identity()).suffix("deaths"))
-                .stage();
+                .stage(Remap.seasonPass());
         LongStageKey<String> KITPVP_KILLSTREAK_WITH_KIT = LongStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.identity()).suffix("killstreak"))
-                .stage();
+                .stage(Remap.seasonPass());
         LongStageKey<String> KITPVP_SPECIAL_ACTION_WITH_KIT = LongStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("kitpvp.stats").function(StatsKey.identity()).suffix("value"))
-                .stage();
+                .stage(Remap.seasonPass());
     }
 
     interface Matchmaking {
@@ -162,37 +187,37 @@ public interface Statistics {
                 .season();
         IntStageKey<String> PLAYED_MATCHES = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("playedMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> WON_MATCHES = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("wonMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> LOST_MATCHES = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("lostMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> KILLS = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("kills"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> DEATHS = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("deaths"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> PLAYED_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("playedMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> WON_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("wonMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> LOST_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("lostMatches"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> KILLS_WITH_KIT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("kills"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> DEATHS_WITH_KIT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("deaths"))
-                .stage();
+                .stage(Remap.seasonPass());
         IntStageKey<String> WINS_AGAINST_BOT = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("1vs1.bot").function(StatsKey.STRING_KEY).suffix("wins"))
-                .stage();
+                .stage(Remap.seasonPass());
         ArrayVoidStatsKey<String> PREVIOUS_OPPONENTS = ArrayVoidStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.path("alltime.1vs1.previous.opponents"))
                 .build();
@@ -205,5 +230,18 @@ public interface Statistics {
         IntVoidStatsKey PREVIOUS_OPPONENTS_STREAK = IntVoidStatsKey.builder()
                 .keyBuilder(builder -> builder.path("alltime.1vs1.previous.streak"))
                 .build();
+    }
+
+    interface Remap {
+
+        static UnaryOperator<VoidKeyFunction> identity() {
+            return (function) ->
+                    KeyFunctions.prefixed(function, "seasonpass.statistics");
+        }
+
+        static <K> UnaryOperator<KeyFunction<K>> seasonPass() {
+            return (function) ->
+                    KeyFunctions.prefixed(function, "seasonpass.statistics");
+        }
     }
 }

@@ -28,6 +28,10 @@ public interface Settings {
         TrueFalseSetting SILENT_MODE = trueFalse("silentMode", false);
         TrueFalseSetting STAFF_CHAT = trueFalse("staffChat", false);
         TrueFalseSetting STRONG_SPECTATE_MODE = trueFalse("strongSpectateMode", false);
+
+        TrueFalseSetting TELEPORT_TO_WARP = trueFalse("teleportToWarp", true);
+        TrueFalseSetting VANISH_WHEN_AFK = trueFalse("vanishWhenAfk", true);
+        NormalSetting NOTIFY_CHANNELS = normal("notifyChannels", "");
     }
 
     interface Scoreboard {

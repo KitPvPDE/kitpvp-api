@@ -1,7 +1,6 @@
 package net.kitpvp.network.user;
 
 import net.kitpvp.chat.api.player.ChatConnection;
-import net.kitpvp.network.Group;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 
@@ -13,8 +12,6 @@ public interface User extends ChatConnection {
     UUID getPlayerId();
 
     String getPlayerName();
-
-    Group getGroup();
 
     ChatConnection getPlayer();
 

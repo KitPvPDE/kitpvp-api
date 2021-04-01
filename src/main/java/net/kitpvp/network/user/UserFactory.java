@@ -10,7 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class UserFactory<T extends User, Player extends Connection> {
+public class UserFactory<T, Player extends Connection> {
 
     private final Function<Player, UUID> uuidFunction;
     private final Supplier<Collection<? extends Player>> onlineFunction;
@@ -33,43 +33,45 @@ public class UserFactory<T extends User, Player extends Connection> {
         return new ArrayList<>(this.loadedUsers.values());
     }
 
-    @Nullable public T getUser(Player player, boolean load, boolean store) {
-        if(player == null)
+    @Nullable
+    public T getUser(Player player, boolean load, boolean store) {
+        if (player == null)
             return null;
 
         return getUser(this.uuidFunction.apply(player), load, store);
     }
 
-    @Nullable public T getUser(UUID uuid, boolean load, boolean store) {
-        if(uuid == null)
+    @Nullable
+    public T getUser(UUID uuid, boolean load, boolean store) {
+        if (uuid == null)
             return null;
 
-        if(this.loadedUsers.containsKey(uuid))
+        if (this.loadedUsers.containsKey(uuid))
             return this.loadedUsers.get(uuid);
 
-        if(!load)
+        if (!load)
             return null;
 
         T user = this.createFunction.apply(uuid);
-        if(store)
+        if (store)
             this.loadedUsers.put(uuid, user);
 
         return user;
     }
 
     public @NotNull T getUser(Player player) {
-        if(player == null)
+        if (player == null)
             throw new NullPointerException("player");
 
         T user = this.getUser(player, false, false);
-        if(user == null)
+        if (user == null)
             throw new IllegalStateException("User " + this.uuidFunction.apply(player) + " is not online");
 
         return user;
     }
 
     public T getUser(UUID playerId) {
-        if(playerId == null)
+        if (playerId == null)
             return null;
 
         return this.loadedUsers.get(playerId);
