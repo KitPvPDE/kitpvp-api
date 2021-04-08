@@ -12,22 +12,30 @@ public class EnumUtils {
     }
 
     public static <E extends Enum<E>> E match(@NotNull Class<E> enumClass, @Nullable String name) {
-        return match(enumClass, String::equals, name);
+        return match(enumClass, String::equals, name, null);
+    }
+
+    public static <E extends Enum<E>> E match(@NotNull Class<E> enumClass, @Nullable String name, E defaultEnum) {
+        return match(enumClass, String::equals, name, defaultEnum);
     }
 
     public static <E extends Enum<E>> E matchIgnoringCase(@NotNull Class<E> enumClass, @Nullable String name) {
-        return match(enumClass, String::equalsIgnoreCase, name);
+        return match(enumClass, String::equalsIgnoreCase, name, null);
     }
 
-    public static <E extends Enum<E>> E match(@NotNull Class<E> enumClass, @NotNull BiPredicate<String, String> test, @Nullable String name) {
+    public static <E extends Enum<E>> E matchIgnoringCase(@NotNull Class<E> enumClass, @Nullable String name, E defaultEnum) {
+        return match(enumClass, String::equalsIgnoreCase, name, defaultEnum);
+    }
+
+    public static <E extends Enum<E>> E match(@NotNull Class<E> enumClass, @NotNull BiPredicate<String, String> test, @Nullable String name, E defaultEnum) {
         if(name == null)
-            return null;
+            return defaultEnum;
 
         for(E element : enumClass.getEnumConstants()) {
             if(test.test(element.name(), name)) {
                 return element;
             }
         }
-        return null;
+        return defaultEnum;
     }
 }

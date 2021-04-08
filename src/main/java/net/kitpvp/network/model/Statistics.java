@@ -149,6 +149,8 @@ public interface Statistics {
         Set<String> PATHS = ArrayUtils.asSet("air", "army",
                 "beam", "fire", "healer", "shockwave", "soldier", "undead", "weather");
 
+        Set<String> DAMAGER_DIFFICULTIES = ArrayUtils.asSet("easy", "normal", "hard", "extreme", "crazy", "ultimate", "impossible");
+
         IntStatsKey<String> KITPVP_PATH_EXP = IntStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.prefix("paths").function(StatsKey.identity()).suffix("exp"))
                 .build();
@@ -179,44 +181,47 @@ public interface Statistics {
                 .offset(1000)
                 .season();
         IntSeasonKey<String> LEGACY_ELO = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1").function(StatsKey.STRING_KEY).suffix("elo"))
+                .keyBuilder(builder -> builder.prefix("1vs1").function(StatsKey.identity()).suffix("elo"))
                 .offset(1000).season();
         IntVoidSeasonKey SUMO = IntVoidStatsKey.builder()
                 .keyBuilder(builder -> builder.path("1vs1.elo.sumo"))
                 .offset(1000)
                 .season();
         IntStageKey<String> PLAYED_MATCHES = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("playedMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.identity()).suffix("playedMatches"))
                 .stage(Remap.seasonPass());
+        IntVoidStageKey GLOBAL_PLAYED_MATCHES = PLAYED_MATCHES.bind("global");
         IntStageKey<String> WON_MATCHES = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("wonMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.identity()).suffix("wonMatches"))
                 .stage(Remap.seasonPass());
+        IntVoidStageKey GLOBAL_WON_MATCHES = WON_MATCHES.bind("global");
         IntStageKey<String> LOST_MATCHES = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("lostMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.identity()).suffix("lostMatches"))
                 .stage(Remap.seasonPass());
+        IntVoidStageKey GLOBAL_LOST_MATCHES = LOST_MATCHES.bind("global");
         IntStageKey<String> KILLS = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("kills"))
+                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.identity()).suffix("kills"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> DEATHS = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.STRING_KEY).suffix("deaths"))
+                .keyBuilder(builder -> builder.prefix("1vs1.modes").function(StatsKey.identity()).suffix("deaths"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> PLAYED_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("playedMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.identity()).suffix("playedMatches"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> WON_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("wonMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.identity()).suffix("wonMatches"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> LOST_MATCHES_WITH_KIT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("lostMatches"))
+                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.identity()).suffix("lostMatches"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> KILLS_WITH_KIT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("kills"))
+                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.identity()).suffix("kills"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> DEATHS_WITH_KIT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.STRING_KEY).suffix("deaths"))
+                .keyBuilder(builder -> builder.prefix("1vs1.stats").function(StatsKey.identity()).suffix("deaths"))
                 .stage(Remap.seasonPass());
         IntStageKey<String> WINS_AGAINST_BOT = IntStatsKey.<String>builder()
-                .keyBuilder(builder -> builder.prefix("1vs1.bot").function(StatsKey.STRING_KEY).suffix("wins"))
+                .keyBuilder(builder -> builder.prefix("1vs1.bot").function(StatsKey.identity()).suffix("wins"))
                 .stage(Remap.seasonPass());
         ArrayVoidStatsKey<String> PREVIOUS_OPPONENTS = ArrayVoidStatsKey.<String>builder()
                 .keyBuilder(builder -> builder.path("alltime.1vs1.previous.opponents"))
@@ -225,7 +230,7 @@ public interface Statistics {
                 .keyBuilder(builder -> builder.path("alltime.1vs1.banned.kits"))
                 .build();
         ArrayStatsKey<String, String> BANNED_MAPS = ArrayStatsKey.<String, String>builder()
-                .keyBuilder(builder -> builder.prefix("alltime.1vs1.banned.maps").function(StatsKey.STRING_KEY))
+                .keyBuilder(builder -> builder.prefix("alltime.1vs1.banned.maps").function(StatsKey.identity()))
                 .build();
         IntVoidStatsKey PREVIOUS_OPPONENTS_STREAK = IntVoidStatsKey.builder()
                 .keyBuilder(builder -> builder.path("alltime.1vs1.previous.streak"))

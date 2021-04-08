@@ -12,7 +12,7 @@ public enum Icon {
     WHITE_DIAMOND("◈"),
     HEAVY_SPARKLE("❈"),
     FLORAL_HEART("❦"),
-    GANG_187(""),
+    GANG_187("➀➇➆"),
     STAR("✦"),
     CIRCLED_STAR("✪"),
     KOPPA("ϟ"),
@@ -25,7 +25,9 @@ public enum Icon {
     SUN_WITH_RAYS("☀"),
     UMBRELLA("☂"),
     ELECTRIC_ARROW("⌁"),
-    DIAMETER_SIGN("⌀")
+    DIAMETER_SIGN("⌀"),
+    NOTE("♪"),
+    HEART("❤")
     ;
 
     @Getter
