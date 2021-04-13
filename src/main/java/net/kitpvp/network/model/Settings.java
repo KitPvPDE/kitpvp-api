@@ -24,6 +24,10 @@ public interface Settings {
         ToggleSetting TIME_LOCK = toggle("timeLock", "default", "day", "night");
     }
 
+    interface Cosmetics {
+        NormalSetting ICON = normal("icon", "none");
+    }
+
     interface Staff {
         TrueFalseSetting SILENT_MODE = trueFalse("silentMode", false);
         TrueFalseSetting STAFF_CHAT = trueFalse("staffChat", false);
