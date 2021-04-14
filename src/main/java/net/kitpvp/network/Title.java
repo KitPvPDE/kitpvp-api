@@ -2,8 +2,6 @@ package net.kitpvp.network;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.kitpvp.network.model.Namespaces;
-import net.kitpvp.network.namespace.Namespace;
 import net.kitpvp.network.namespace.NamespacedKey;
 import net.kitpvp.network.util.EnumUtils;
 import org.jetbrains.annotations.NotNull;
@@ -11,20 +9,20 @@ import org.jetbrains.annotations.NotNull;
 @RequiredArgsConstructor
 public enum Title {
 
-    SUMO_CHAMPION(Namespaces.TITLES, "sumo_champion"),
-    MATCHMAKING_CHAMPION(Namespaces.TITLES, "matchmaking_champion"),
-    KITPVP_CHAMPION(Namespaces.TITLES, "kitpvp_champion")
+    SUMO_CHAMPION("title", "sumo_champion"),
+    MATCHMAKING_CHAMPION("title", "matchmaking_champion"),
+    KITPVP_CHAMPION("title", "kitpvp_champion")
     ;
 
     @Getter
     private final NamespacedKey key;
 
-    Title(Namespace namespace, String name) {
-        this.key = namespace.getKey(name);
+    Title(String namespace, String name) {
+        this.key = NamespacedKey.key(namespace, name);
     }
 
     public final String getName() {
-        return this.key.getName();
+        return this.key.getKey();
     }
 
     public static Title getTitle(String name) {
@@ -32,6 +30,6 @@ public enum Title {
     }
 
     public static Title getTitle(@NotNull NamespacedKey key) {
-        return getTitle(key.getName());
+        return getTitle(key.getKey());
     }
 }

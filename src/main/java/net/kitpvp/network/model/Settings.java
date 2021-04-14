@@ -11,6 +11,7 @@ public interface Settings {
 
     interface Global {
         NormalSetting TITLE = normal("title", "none");
+        @Deprecated
         NormalSetting HEAD = normal("head", "");
         NormalSetting APPEALS_BLOCKED = normal("appealsBlocked", "");
         NormalSetting TAG_RANK = normal("tagRank", "");
@@ -26,6 +27,7 @@ public interface Settings {
 
     interface Cosmetics {
         NormalSetting ICON = normal("icon", "none");
+        NormalSetting HEAD = normal("head", "none");
     }
 
     interface Staff {
