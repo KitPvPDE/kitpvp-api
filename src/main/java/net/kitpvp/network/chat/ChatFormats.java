@@ -13,6 +13,15 @@ public class ChatFormats {
             .highlightColor(ChatColor.RED)
             .normalColor(ChatColor.GRAY)
             .build();
+    public static final MsgFormat ANNOUNCEMENT = builder()
+            .prefixBrackets(true)
+            .prefixColor(ChatColor.DARK_RED)
+            .innerPrefixColor(ChatColor.DARK_RED)
+            .prefix("Announcement")
+            .brackets("｜", " »")
+            .highlightColor(ChatColor.GOLD)
+            .normalColor(ChatColor.GRAY)
+            .build();
     public static final MsgFormat MATCHMAKING = builder()
             .prefixBrackets(true)
             .prefixColor(ChatColor.WHITE)
@@ -22,7 +31,7 @@ public class ChatFormats {
             .normalColor(ChatColor.GRAY)
             .build();
     public static final MsgFormat GLOBAL = builder()
-            .prefix("»»")
+            .prefix(">")
             .prefixColor(ChatColor.DARK_RED)
             .highlightColor(ChatColor.RED)
             .build();

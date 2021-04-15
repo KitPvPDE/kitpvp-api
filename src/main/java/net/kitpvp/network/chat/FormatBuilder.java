@@ -12,7 +12,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 public class FormatBuilder {
 
     private boolean brackets, prefixBold = false;
-    private String prefix;
+    private String prefix, leftBracket = "[", rightBracket = "]";
     private ChatColor prefixColor, innerPrefixColor, highlightColor, normalColor = ChatColor.GRAY;
 
     public FormatBuilder normalColor(ChatColor color) {
@@ -40,6 +40,12 @@ public class FormatBuilder {
         return this;
     }
 
+    public FormatBuilder brackets(String leftBracket, String rightBracket) {
+        this.leftBracket = leftBracket;
+        this.rightBracket = rightBracket;
+        return this;
+    }
+
     public FormatBuilder prefixBold(boolean bold) {
         this.prefixBold = bold;
         return this;
@@ -62,8 +68,8 @@ public class FormatBuilder {
         Preconditions.checkNotNull(this.highlightColor, "highlightColor");
         Preconditions.checkNotNull(this.normalColor, "normalColor");
 
-        return new MsgFormatImpl(this.brackets, this.prefixBold, this.prefix, this.prefixColor,
-                this.innerPrefixColor, this.highlightColor, this.normalColor);
+        return new MsgFormatImpl(this.brackets, this.prefixBold, this.prefix, this.leftBracket, this.rightBracket,
+                this.prefixColor, this.innerPrefixColor, this.highlightColor, this.normalColor);
     }
 
     @Getter
@@ -71,7 +77,7 @@ public class FormatBuilder {
     private class MsgFormatImpl implements MsgFormat {
 
         private final boolean brackets, prefixBold;
-        private final String prefix;
+        private final String prefix, leftBracket, rightBracket;
         private final ChatColor prefixColor, innerPrefixColor, highlightColor, normalColor;
 
         @Override
@@ -79,12 +85,12 @@ public class FormatBuilder {
             if (this.brackets) {
                 return ""
                         + this.prefixColor
-                        + "["
+                        + this.leftBracket
                         + this.innerPrefixColor
                         + (this.prefixBold ? ChatColor.BOLD : "")
                         + this.getPrefix()
                         + this.getPrefixColor()
-                        + "]";
+                        + this.rightBracket;
             } else if (!this.prefix.isEmpty()) {
                 return ""
                         + this.getPrefixColor()

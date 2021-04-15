@@ -10,6 +10,7 @@ import java.util.Arrays;
 public interface Settings {
 
     interface Global {
+        @Deprecated
         NormalSetting TITLE = normal("title", "none");
         @Deprecated
         NormalSetting HEAD = normal("head", "");
@@ -28,6 +29,9 @@ public interface Settings {
     interface Cosmetics {
         NormalSetting ICON = normal("icon", "none");
         NormalSetting HEAD = normal("head", "none");
+        NormalSetting HEAD_RARITY = normal("head", "legendary");
+        NormalSetting LEGGINGS = normal("leggings", "none");
+        NormalSetting TITLE = normal("title", "none");
     }
 
     interface Staff {
