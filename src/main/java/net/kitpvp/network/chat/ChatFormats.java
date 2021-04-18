@@ -13,6 +13,14 @@ public class ChatFormats {
             .highlightColor(ChatColor.RED)
             .normalColor(ChatColor.GRAY)
             .build();
+    public static final MsgFormat NORISK_CLIENT = builder()
+            .prefixBrackets(true)
+            .prefixColor(ChatColor.WHITE)
+            .innerPrefixColor(ChatColor.RED)
+            .prefix("NoRiskClient")
+            .highlightColor(ChatColor.RED)
+            .normalColor(ChatColor.GRAY)
+            .build();
     public static final MsgFormat ANNOUNCEMENT = builder()
             .prefixBrackets(true)
             .prefixColor(ChatColor.DARK_RED)
