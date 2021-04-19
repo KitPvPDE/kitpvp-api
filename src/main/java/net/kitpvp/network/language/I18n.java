@@ -19,4 +19,8 @@ public class I18n {
     public static String translateRank(Group group, Locale locale) {
         return LocaleManager.getInstance().translate(locale, "group." + group.name().toLowerCase(Locale.ROOT) + ".name");
     }
+
+    public static String translate1vs1Kit(String kit, Locale locale) {
+        return LocaleManager.getInstance().translate(locale, "matchmaking.kit." + kit + ".name");
+    }
 }
