@@ -24,7 +24,7 @@ public interface Settings {
         TrueFalseSetting ONLY_MESSAGES = trueFalse("onlyMessages2", false);
         TrueFalseSetting VOTED = trueFalse("votedForServer", false);
         ToggleSetting TIME_LOCK = toggle("timeLock", "default", "day", "night");
-        NormalSetting LANGUAGE = normal("language", "german");
+        NormalSetting LANGUAGE = normal("language", "none");
 
         TrueFalseSetting LIKED_ON_NAMEMC = trueFalse("namemcLike", false);
     }
