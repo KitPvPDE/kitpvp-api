@@ -63,8 +63,10 @@ public class FormatBuilder {
 
     public MsgFormat build() {
         Preconditions.checkNotNull(this.prefix, "prefix");
-        Preconditions.checkNotNull(this.prefixColor, "prefixColor");
-        Preconditions.checkState(this.innerPrefixColor != null || !this.brackets, "innerPrefixColor");
+        if(!this.prefix.isEmpty()) {
+            Preconditions.checkNotNull(this.prefixColor, "prefixColor");
+            Preconditions.checkState(this.innerPrefixColor != null || !this.brackets, "innerPrefixColor");
+        }
         Preconditions.checkNotNull(this.highlightColor, "highlightColor");
         Preconditions.checkNotNull(this.normalColor, "normalColor");
 
