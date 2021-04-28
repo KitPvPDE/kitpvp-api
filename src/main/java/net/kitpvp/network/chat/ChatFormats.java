@@ -48,6 +48,7 @@ public class ChatFormats {
             .prefixBrackets(true)
             .prefixColor(ChatColor.WHITE)
             .innerPrefixColor(ChatColor.YELLOW)
+            .brackets("❘ ", "»")
             .prefix("KitPvP")
             .highlightColor(ChatColor.GREEN)
             .build();
