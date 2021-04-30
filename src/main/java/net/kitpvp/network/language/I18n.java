@@ -26,6 +26,6 @@ public class I18n {
     }
 
     public static String translatePerk(Perk perk, Locale locale) {
-        return LocaleManager.getInstance().translate(locale, "perk." + perk + ".name");
+        return LocaleManager.getInstance().translate(locale, "perk." + perk.nameToLowercase() + ".name");
     }
 }
