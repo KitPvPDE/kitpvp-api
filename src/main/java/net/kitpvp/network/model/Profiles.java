@@ -1,9 +1,11 @@
 package net.kitpvp.network.model;
 
 import net.kitpvp.network.Currency;
+import net.kitpvp.network.xp.XpBooster;
 import net.kitpvp.stats.Key;
 import net.kitpvp.stats.keys.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -41,6 +43,7 @@ public interface Profiles {
             .build();
     LongVoidStatsKey PROFILE_LOGINS = LongStatsKey.identity().bind("logins");
     LongVoidStatsKey PROFILE_LAST_ONLINE = LongStatsKey.identity().bind("timestamp");
+    LongVoidStatsKey PROFILE_SEASON = LongStatsKey.identity().bind("season");
 
     DoubleVoidStatsKey PROFILE_EXP = DoubleStatsKey.identity().bind("exp");
 
