@@ -1,11 +1,18 @@
 package net.kitpvp.network.model;
 
+import net.kitpvp.network.Currency;
 import net.kitpvp.stats.Key;
 import net.kitpvp.stats.keys.*;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 public interface Profiles {
+
+    Key<Currency> CURRENCY_KEY = Key.<Currency>builder()
+            .function(Currency::nameToLowercase)
+            .inverse(Currency::matchIgnoringCase)
+            .buildKey();
 
     VoidStatsKey<String> PROFILE_NAME = StatsKey.identity().bind("name");
     VoidStatsKey<String> PROFILE_NAME_LOWERCASE = StatsKey.identity().bind("lowername");
@@ -15,7 +22,15 @@ public interface Profiles {
             .build();
     VoidStatsKey<String> PROFILE_ADDRESS = StatsKey.identity().bind("address");
 
-    LongVoidStatsKey PROFILE_BALANCE = LongStatsKey.identity().bind("balance");
+    SetVoidStatsKey<String> PROFILE_FLAGS = SetVoidStatsKey.<String>builder()
+            .defaultValue(HashSet::new)
+            .keyBuilder(voidKeyBuilder -> voidKeyBuilder.path("flags"))
+            .build();
+
+    LongStatsKey<Currency> PROFILE_BALANCE = LongStatsKey.<Currency>builder()
+            .keyBuilder(currencyKeyBuilder -> currencyKeyBuilder.prefix("currencyBalance").key(CURRENCY_KEY))
+            .def(0)
+            .build();
     LongVoidStatsKey PROFILE_LEVEL = LongVoidStatsKey.builder()
             .offset(1)
             .keyBuilder(voidKeyBuilder -> voidKeyBuilder.path("level"))

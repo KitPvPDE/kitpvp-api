@@ -1,6 +1,8 @@
 package net.kitpvp.network.model;
 
+import net.kitpvp.network.Currency;
 import net.kitpvp.network.HeadRarity;
+import net.kitpvp.network.Perk;
 import net.kitpvp.network.Warp;
 import net.kitpvp.network.util.ArrayUtils;
 import net.kitpvp.stats.Key;
@@ -14,6 +16,10 @@ public interface Statistics {
     Key<Warp> WARP_KEY = Key.<Warp>builder()
             .function(Warp::nameToLowercase)
             .inverse(Warp::matchIgnoringCase)
+            .buildKey();
+    Key<Perk> PERK_KEY = Key.<Perk>builder()
+            .function(Perk::nameToLowercase)
+            .inverse(Perk::matchIgnoringCase)
             .buildKey();
     Key<HeadRarity> HEAD_RARITY_KEY = Key.<HeadRarity>builder()
             .function(HeadRarity::nameToLowercase)
@@ -73,6 +79,11 @@ public interface Statistics {
     LongStageKey<HeadRarity> HEADS_RECEIVED = LongStatsKey.<HeadRarity>builder()
             .keyBuilder(builder -> builder.prefix("heads.received").function(HEAD_RARITY_KEY))
             .stage(Remap.seasonPass()); // check
+
+    // Perks
+    IntStatsKey<Perk> PERK_TIER = IntStatsKey.<Perk>builder()
+            .keyBuilder(builder -> builder.prefix("perks").function(PERK_KEY).suffix("tier"))
+            .build();
 
     // Events
 
