@@ -3,6 +3,8 @@ package net.kitpvp.network;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Locale;
+
 @RequiredArgsConstructor
 public enum Icon {
 
@@ -32,4 +34,8 @@ public enum Icon {
 
     @Getter
     private final String text;
+
+    public String nameToLowercase() {
+        return this.name().toLowerCase(Locale.ROOT);
+    }
 }

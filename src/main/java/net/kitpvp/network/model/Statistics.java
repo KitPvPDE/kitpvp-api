@@ -9,6 +9,7 @@ import net.kitpvp.stats.Key;
 import net.kitpvp.stats.keys.*;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.UnaryOperator;
 
 public interface Statistics {
@@ -25,6 +26,10 @@ public interface Statistics {
             .function(HeadRarity::nameToLowercase)
             .inverse(HeadRarity::rarityFromLowercase)
             .buildKey();
+    StatsKey<String, UUID> UUID_STATS_KEY = StatsKey.<String, UUID>builder()
+            .keyBuilder(stringKeyBuilder -> stringKeyBuilder.key(Key.identity()))
+            .defaultNull()
+            .build();
     LongVoidStageKey ONLINE_STREAK = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("streak.days"))
             .stage(Remap.identity());
