@@ -30,6 +30,20 @@ public interface Statistics {
             .keyBuilder(stringKeyBuilder -> stringKeyBuilder.key(Key.identity()))
             .defaultNull()
             .build();
+    StatsKey<String, UUID> STRING_UUID_KEY = StatsKey.<String, String>builder()
+            .map(object -> {
+                if(object instanceof String) {
+                    return UUID.fromString((String) object);
+                } else if (object instanceof UUID) {
+                    return (UUID) object;
+                } else if (object == null) {
+                    return null;
+                } else {
+                    throw new ClassCastException(object + " to UUID");
+                }
+            })
+            .keyBuilder(stringKeyBuilder -> stringKeyBuilder.function(Key.identity()))
+            .build();
     LongVoidStageKey ONLINE_STREAK = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("streak.days"))
             .stage(Remap.identity());
