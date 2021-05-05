@@ -28,7 +28,7 @@
         <dependency>
             <groupId>net.kitpvp.network</groupId>
             <artifactId>chat-api</artifactId>
-            <version>1.4-SNAPSHOT</version>
+            <version>1.5-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
