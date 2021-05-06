@@ -42,6 +42,7 @@ public interface Statistics {
                     throw new ClassCastException(object + " to UUID");
                 }
             })
+            .defaultMappingValue((String) null)
             .keyBuilder(stringKeyBuilder -> stringKeyBuilder.function(Key.identity()))
             .build();
     LongVoidStageKey ONLINE_STREAK = LongVoidStatsKey.builder()
