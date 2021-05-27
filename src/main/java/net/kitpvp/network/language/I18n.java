@@ -21,6 +21,10 @@ public class I18n {
         return translate(locale, "ability." + ability + ".name");
     }
 
+    public static String translateAbilityDescription(String ability, Locale locale) {
+        return translate(locale, "ability." + ability + ".description");
+    }
+
     public static String translateRank(Group group, Locale locale) {
         return translate(locale, "group." + group.name().toLowerCase(Locale.ROOT) + ".name");
     }
