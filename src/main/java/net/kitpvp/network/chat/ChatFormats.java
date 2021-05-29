@@ -58,6 +58,13 @@ public class ChatFormats {
             .highlightColor(ChatColor.RED)
             .normalColor(ChatColor.DARK_AQUA)
             .build();
+    public static final MsgFormat ARCADE = builder()
+            .prefix("Arcade [BETA]")
+            .prefixColor(ChatColor.WHITE)
+            .innerPrefixColor(ChatColor.DARK_RED)
+            .brackets("❘ ", "»")
+            .highlightColor(ChatColor.BOLD)
+            .build();
 
     public static FormatBuilder builder() {
         return new FormatBuilder();
