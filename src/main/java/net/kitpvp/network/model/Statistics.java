@@ -149,7 +149,7 @@ public interface Statistics {
             .keyBuilder(builder -> builder.path("misc.blocksWalked"))
             .stage(Remap.identity());
     LongStageKey<Warp> BLOCKS_WALKED = LongStatsKey.<Warp>builder()
-            .keyBuilder(builder -> builder.prefix("incremental").function(WARP_KEY).suffix("blocks"))
+            .keyBuilder(builder -> builder.prefix("misc.warpBlocksWalked").function(WARP_KEY))
             .stage(Remap.seasonPass());
     LongVoidStageKey GLOBAL_BLOCKS_WALKED = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("incremental.global.blocks"))
