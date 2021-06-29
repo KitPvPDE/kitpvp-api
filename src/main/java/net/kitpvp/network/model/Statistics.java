@@ -8,6 +8,8 @@ import net.kitpvp.network.util.ArrayUtils;
 import net.kitpvp.stats.Key;
 import net.kitpvp.stats.keys.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.UnaryOperator;
@@ -140,6 +142,10 @@ public interface Statistics {
             .keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("record"))
             .def(-1)
             .stage(Remap.seasonPass());
+    LongStageKey<String> TRAINING_RECORD_ZERO = LongStatsKey.<String>builder()
+            .keyBuilder(builder -> builder.prefix("training").function(Key.identity()).suffix("record"))
+            .def(0)
+            .stage(Remap.seasonPass());
 
     // Misc
     LongVoidStageKey MISC_SOUPS_EATEN = LongVoidStatsKey.builder()
@@ -177,9 +183,12 @@ public interface Statistics {
 
     interface KitPvP {
 
+        List<String> PATHS_SORTED = Arrays.asList("air", "army",
+                "beam", "fire", "healer", "shockwave", "soldier", "undead", "weather");
         Set<String> PATHS = ArrayUtils.asSet("air", "army",
                 "beam", "fire", "healer", "shockwave", "soldier", "undead", "weather");
 
+        List<String> DAMAGER_DIFFICULTIES_SORTED = Arrays.asList("easy", "normal", "hard", "extreme", "crazy", "ultimate", "impossible");
         Set<String> DAMAGER_DIFFICULTIES = ArrayUtils.asSet("easy", "normal", "hard", "extreme", "crazy", "ultimate", "impossible");
 
         IntStatsKey<String> KITPVP_PATH_EXP = IntStatsKey.<String>builder()
