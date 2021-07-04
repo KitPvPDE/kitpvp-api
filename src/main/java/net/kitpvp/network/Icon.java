@@ -32,7 +32,8 @@ public enum Icon {
     HEART("❤"),
     BASTI_SMILEY(":^)"),
     AMONG_US("ඞ"),
-    ANTICHRIST("666")
+    ANTICHRIST("666"),
+    UWU("°u°")
     ;
 
     @Getter
