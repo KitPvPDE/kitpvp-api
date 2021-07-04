@@ -29,7 +29,10 @@ public enum Icon {
     ELECTRIC_ARROW("⌁"),
     DIAMETER_SIGN("⌀"),
     NOTE("♪"),
-    HEART("❤")
+    HEART("❤"),
+    BASTI_SMILEY(":^)"),
+    AMONG_US("ඞ"),
+    ANTICHRIST("666")
     ;
 
     @Getter
