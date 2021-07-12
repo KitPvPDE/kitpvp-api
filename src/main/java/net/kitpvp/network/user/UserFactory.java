@@ -32,7 +32,8 @@ public class UserFactory<T, Player extends Connection> {
 
     public List<T> getOnlineUsers() {
         return this.onlineFunction.get().stream()
-                .map(this::getUser)
+                .map(this::getNullableUser)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
@@ -49,6 +50,13 @@ public class UserFactory<T, Player extends Connection> {
             throw new IllegalStateException("User " + this.uuidFunction.apply(player) + " is not online");
 
         return user;
+    }
+
+    public @Nullable T getNullableUser(Player player) {
+        if(player == null)
+            return null;
+
+        return this.getUser(this.uuidFunction.apply(player));
     }
 
     public @Nullable T getUser(UUID playerId) {
