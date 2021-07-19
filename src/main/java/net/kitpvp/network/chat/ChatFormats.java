@@ -65,6 +65,12 @@ public class ChatFormats {
             .brackets("❘ ", "»")
             .highlightColor(ChatColor.BOLD)
             .build();
+    public static final MsgFormat HARDCORE_GAMES = builder()
+            .prefix("»")
+            .prefixColor(ChatColor.WHITE)
+            .highlightColor(ChatColor.AQUA)
+            .normalColor(ChatColor.GRAY)
+            .build();
 
     public static FormatBuilder builder() {
         return new FormatBuilder();
