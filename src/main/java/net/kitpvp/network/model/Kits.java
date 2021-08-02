@@ -13,4 +13,8 @@ public interface Kits {
 
     Set<Kit> FREE_KITS = Stream.of(Kit.NONE, Kit.NOOB, Kit.RELAXO, Kit.NEO, Kit.VIPER, Kit.FIREMAN, Kit.BARBARIAN)
             .collect(Collectors.toSet());
+
+    Set<String> MATCHMAKING_KITS = Stream.of("nodebuff", "onlysword", "fullinv", "lavaduel", "recraft", "combo", "onebar",
+                    "bow", "gladiator1v1", "sumo", "classic", "debuff", "earlyhg", "anchor", "builduhc", "mcsg", "pit", "gapple")
+            .collect(Collectors.toSet());
 }
