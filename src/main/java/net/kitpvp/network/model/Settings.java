@@ -27,6 +27,10 @@ public interface Settings {
         NormalSetting LANGUAGE = normal("language", "none");
 
         TrueFalseSetting LIKED_ON_NAMEMC = trueFalse("namemcLike", false);
+
+        static NormalSetting createLastServer(String category) {
+            return normal("lastServerAt" + category, "");
+        }
     }
 
     interface Cosmetics {
