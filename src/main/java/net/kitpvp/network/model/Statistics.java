@@ -56,6 +56,9 @@ public interface Statistics {
     LongVoidStageKey ONLINE_MAX_STREAK = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("streak.record"))
             .stage(Remap.identity());
+    BooleanVoidSeasonKey ONLINE_STREAK_RENEWED = BooleanVoidStatsKey.builder()
+            .keyBuilder(builder -> builder.path("streak.renewed"))
+            .season();
     LongVoidStageKey ONLINE_TIME = LongVoidStatsKey.builder()
             .keyBuilder(builder -> builder.path("online"))
             .stage(Remap.identity()); // check
