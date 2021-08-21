@@ -67,12 +67,14 @@ public enum Group {
             case ADMIN:
                 return "Admin";
             case ELITE:
+            case HAZARD:
                 return "Elite";
             case BUILDER:
                 return "Builder";
             case MEDIA:
                 return "Media";
             case LEGEND:
+            case INFECTED:
                 return "Legend";
             default:
             case DEFAULT:
@@ -87,10 +89,6 @@ public enum Group {
                 return "Trial Moderator";
             case SENIOR_MODERATOR:
                 return "Senior Moderator";
-            case INFECTED:
-                return "Infected";
-            case HAZARD:
-                return "Hazard";
         }
     }
 
@@ -101,28 +99,25 @@ public enum Group {
             case DEFAULT:
                 return "" + ChatColor.GRAY;
             case SENIOR_MODERATOR:
-                return "" + ChatColor.DARK_PURPLE + ChatColor.ITALIC;
+                return "" + ChatColor.RED + ChatColor.ITALIC;
             case TRIAL_MODERATOR:
-                return "" + ChatColor.LIGHT_PURPLE;
+                return "" + ChatColor.AQUA;
             case MODERATOR:
-                return "" + ChatColor.DARK_PURPLE;
+            case BUILDER:
+                return "" + ChatColor.DARK_AQUA;
             case DEVELOPER:
             case ADMIN:
-                return "" + ChatColor.RED;
+                return "" + ChatColor.DARK_RED + ChatColor.BOLD;
             case PRO_PLUS:
                 return "" + ChatColor.BLUE + ChatColor.ITALIC;
             case LEGEND:
+            case INFECTED:
                 return "" + ChatColor.GOLD + ChatColor.ITALIC;
             case MEDIA:
-                return "" + ChatColor.AQUA;
-            case BUILDER:
-                return "" + ChatColor.YELLOW;
+                return "" + ChatColor.DARK_PURPLE;
             case ELITE:
-                return "" + ChatColor.GOLD;
             case HAZARD:
-                return "" + ChatColor.GREEN;
-            case INFECTED:
-                return "" + ChatColor.GREEN + ChatColor.ITALIC;
+                return "" + ChatColor.GOLD;
             default:
                 throw new UnsupportedOperationException("Unknown group " + this);
         }
